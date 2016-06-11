@@ -19,7 +19,7 @@ default: &default
 
 development:
   <<: *default
-  database: recipes_development
+  database: recipes_dev
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: recipes_production
+  database: recipes
   username: recipes
   password: <%= ENV['RECIPES_DATABASE_PASSWORD'] %>
