@@ -1,7 +1,9 @@
-<p id="notice">
-	<%= notice %>
-</p>
-
+<% unless notice.nil? %>
+<div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= notice %>
+</div>
+<% end %>
 <div class="recipes">
 	<div class="clearfix">
 		<a href="<%= new_recipe_path %>" class="btn btn-primary pull-right" role="button">Add new recipe</a>

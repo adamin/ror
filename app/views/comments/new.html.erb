@@ -1,5 +1,5 @@
-<h1>New Comment</h1>
+<div class="text-right"><%= link_to 'Back', @recipe, class: 'btn btn-primary' %></div>
+
+<h1>Add a new comment for the '<%= @recipe.title %>' recipe</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Back', comments_path %>

@@ -1,16 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<div class="comments__item">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<%= @comment.content %>
-			</div>
-			<div class="panel-footer text-right">
-				<%= @comment.author %> on <%= localize(@comment.updated_at, :format => :long) %>
-			</div>
-		</div>
-	</div>
-
 <p>
   <strong>Content:</strong>
   <%= @comment.content %>

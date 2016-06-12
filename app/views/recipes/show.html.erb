@@ -1,11 +1,14 @@
-<p id="notice">
-	<%= notice %>
-</p>
 <div class="text-right">
 	<%= link_to 'Back', recipes_path, class: 'btn btn-primary' %>
 	<%= link_to 'Edit', edit_recipe_path(@recipe), class: 'btn btn-default' %>
 	<%= link_to 'Destroy', @recipe, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?'} %>
 </div>
+<% unless notice.nil? %>
+<div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= notice %>
+</div>
+<% end %>
 <div class="recipe">
 	<h1><%= @recipe.title %></h1>
 
@@ -33,16 +36,16 @@
 	<p>
 		<%= raw @recipe.method %>
 	</p>
-
 </div>
 
 <div class="comments">
+	<%= link_to 'New comment', new_comment_path(recipe_id: @recipe.id), class: 'btn btn-primary pull-right' %>
 	<h2>Comments</h2>
-	<% if @recipe.comments.count == 0 %>
-		No comments so far... <a href="<%= new_comment_path %>">add one</a>
-	<% else %>
+	<% if @recipe.comments.any? %>
 		<% @recipe.comments.each do |comment| %>
 			<%= render partial: 'comments/show',  locals: {comment: comment} %>
 		<% end %>
+	<% else %>
+		No comments so far...
 	<% end %>
 </div>

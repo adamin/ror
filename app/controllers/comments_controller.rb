@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: [:show]
 
   # GET /comments
   # GET /comments.json
@@ -14,7 +14,9 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
+    @recipe = Recipe.find(params[:recipe_id])    
     @comment = Comment.new
+    @comment.recipe_id = @recipe.id
   end
 
   # GET /comments/1/edit
@@ -25,13 +27,14 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
+    @recipe = Recipe.find(@comment.recipe_id)
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.html { redirect_to @recipe, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { render :new }
+        format.html { render :new}
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
