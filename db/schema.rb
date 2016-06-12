@@ -15,24 +15,24 @@ ActiveRecord::Schema.define(version: 20160611145700) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content",    limit: 65535
-    t.string   "author",     limit: 255
+    t.string   "author",     limit: 255,   default: ""
     t.integer  "recipe_id",  limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   add_index "comments", ["recipe_id"], name: "index_comments_on_recipe_id", using: :btree
 
   create_table "recipes", force: :cascade do |t|
-    t.string   "title",            limit: 255
+    t.string   "title",            limit: 255,   default: ""
     t.text     "ingredients",      limit: 65535
     t.text     "method",           limit: 65535
-    t.string   "image_url",        limit: 255
-    t.integer  "preparation_time", limit: 4
-    t.integer  "cooking_time",     limit: 4
-    t.integer  "servings",         limit: 4
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.string   "image_url",        limit: 255,   default: ""
+    t.integer  "preparation_time", limit: 4,     default: 0
+    t.integer  "cooking_time",     limit: 4,     default: 0
+    t.integer  "servings",         limit: 4,     default: 0
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
   end
 
   add_foreign_key "comments", "recipes"
