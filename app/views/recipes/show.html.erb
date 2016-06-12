@@ -1,19 +1,48 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @recipe.title %>
+<p id="notice">
+	<%= notice %>
 </p>
+<div class="text-right">
+	<%= link_to 'Back', recipes_path, class: 'btn btn-primary' %>
+	<%= link_to 'Edit', edit_recipe_path(@recipe), class: 'btn btn-default' %>
+	<%= link_to 'Destroy', @recipe, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?'} %>
+</div>
+<div class="recipe">
+	<h1><%= @recipe.title %></h1>
 
-<p>
-  <strong>Contents:</strong>
-  <%= @recipe.contents %>
-</p>
+	<div class="row">
+		<div class="col-md-6"><img src="/assets/<%= @recipe.image_url %>" alt="<%= @recipe.title %>">
+		</div>
+		<div class="col-md-6">
+			<ul class="recipe__info">
+				<li>
+					<span class="glyphicon glyphicon-time" aria-hidden="true"></span><%= distance_of_time_in_words(@recipe.preparation_time + @recipe.cooking_time) %>
+				</li>
+				<li>
+					<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span><%= @recipe.servings %>
+				</li>
+			</ul>
+		</div>
+	</div>
 
-<p>
-  <strong>Image url:</strong>
-  <%= @recipe.image_url %>
-</p>
+	<h3>Ingredients</h3>
+	<p>
+		<%= raw @recipe.ingredients %>
+	</p>
 
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %>
+	<h3>Method</h3>
+	<p>
+		<%= raw @recipe.method %>
+	</p>
+
+</div>
+
+<div class="comments">
+	<h2>Comments</h2>
+	<% if @recipe.comments.count == 0 %>
+		No comments so far... <a href="<%= new_comment_path %>">add one</a>
+	<% else %>
+		<% @recipe.comments.each do |comment| %>
+			<%= render partial: 'comments/show',  locals: {comment: comment} %>
+		<% end %>
+	<% end %>
+</div>

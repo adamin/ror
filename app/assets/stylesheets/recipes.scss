@@ -1,3 +1,47 @@
 // Place all the styles related to the recipes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.recipes__list {
+  padding: 10px 0;
+}
+
+.recipes__item {
+  a {
+    display: block;
+  }
+  .thumbnail:hover {
+    -moz-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    cursor: pointer;
+  }
+}
+
+.recipes__item__info {
+  list-style: none;
+  padding: 15px;
+  font-size: 16px;
+  
+  span {
+    padding-right: 10px;
+  }
+}
+
+.recipe {
+  text-align: left;
+  
+  img {
+    margin: 0;
+    padding: 25px 0;
+  }
+}
+
+.recipe__info {
+  @extend .recipes__item__info;
+  font-size: 24px;
+  
+  span {
+    padding-right: 15px;
+  }
+}
