@@ -1,5 +1,5 @@
 class Recipe < ActiveRecord::Base
-  has_many :comments, dependent: :destroy
+  has_many :comments, -> { order 'updated_at desc' }, dependent: :destroy
   
   validates :title, presence: true
   validates :ingredients, presence: true
